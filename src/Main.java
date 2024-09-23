@@ -34,8 +34,7 @@ public class Main {
                  █   █    ▐   ▐   █    ▐   ▐         █    █    ▐   ▐   █    ▐ \s
                  ▐   ▐            ▐                  ▐    ▐            ▐      \s
                 """);
-//        getSetWords();
-//        System.out.println(choiceOfWord(getSetWords()));
+
         String word = choiceOfWord(getSetWords());
         ArrayList<String> lettersWord = getWordLetters(word);
         ArrayList<String> hiddenLetters = getWordLetters(word);
