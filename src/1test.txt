@@ -1,0 +1,220 @@
+import java.io.*;
+import java.util.Arrays;
+import java.util.Scanner;
+
+//сделать проверку на уникальность букв в слове
+
+public class Main {
+    public static void main(String[] args)  {
+        System.out.println("""
+                 ▄▀▀▄ ▄▄   ▄▀▀█▄   ▄▀▀▄ ▀▄  ▄▀▀▀▀▄    ▄▀▀▄ ▄▀▄  ▄▀▀█▄   ▄▀▀▄ ▀▄
+                █  █   ▄▀ ▐ ▄▀ ▀▄ █  █ █ █ █         █  █ ▀  █ ▐ ▄▀ ▀▄ █  █ █ █
+                ▐  █▄▄▄█    █▄▄▄█ ▐  █  ▀█ █    ▀▄▄  ▐  █    █   █▄▄▄█ ▐  █  ▀█
+                   █   █   ▄▀   █   █   █  █     █ █   █    █   ▄▀   █   █   █\s
+                  ▄▀  ▄▀  █   ▄▀  ▄▀   █   ▐▀▄▄▄▄▀ ▐ ▄▀   ▄▀   █   ▄▀  ▄▀   █ \s
+                 █   █    ▐   ▐   █    ▐   ▐         █    █    ▐   ▐   █    ▐ \s
+                 ▐   ▐            ▐                  ▐    ▐            ▐      \s
+                """);
+        dictonary();
+    }
+
+    public static void dictonary(){
+        String separater = File.separator;
+        String path = "src" + separater + "words.txt";
+        File words = new File(path);
+
+        try (Scanner scanner = new Scanner(words)) {
+
+            String lineWorlds = "";
+            while (scanner.hasNextLine()) {
+                lineWorlds = lineWorlds + String.valueOf(scanner.nextLine()).toLowerCase() + " ";
+            }
+            String[] arrWords = lineWorlds.split(" ");
+            run(arrWords);
+
+
+
+        } catch (FileNotFoundException e){
+            System.out.println(e);
+        }
+    }
+
+    public static String[] check(String[] arrOne, String[] arrTwo, String letter) {
+        for (int i = 0; i < arrOne.length; i++) {
+            if (arrOne[i].equals(letter)) {
+                arrTwo[i] = arrOne[i];
+            }
+        }
+        return arrTwo;
+    }
+
+    public static String[] randomWord(String[] arrayWords) {
+        int random = (int) (Math.random() * arrayWords.length);
+        String randomWord = arrayWords[random];
+        String[] RWArr = randomWord.split("");
+        return RWArr;
+    }
+
+    public static String run(String[] arrW){
+
+        String[] randomWord = randomWord(arrW);
+
+        String[] riddle = new String[randomWord.length];
+        Arrays.fill(riddle, "*");
+
+
+        for (String word : randomWord) {
+            System.out.print(word);
+        }
+
+        System.out.println(" ");
+
+        Scanner in = new Scanner(System.in);
+
+        int errors = 0;
+
+        for (int x = 0; x < (randomWord.length +6) ; x++) {
+            String art;
+            if ( Arrays.equals(randomWord, riddle)) {
+                System.out.println("\n\n\nВы отгадали ваше слово было: " + String.join("",randomWord) + "\n\n\n");
+                dictonary();
+
+            }
+            System.out.println("\n\n\n");
+            if (errors == 0){
+                art = """
+                           ▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █    ▄▀     ▐                                  
+                           █  ▄▀       ▐                             
+                           █▄▀                    
+                           █                          
+                           █                                             
+                           █                                                                         
+                           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █[E]xit  [N]ew game█  
+                           ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀        
+                       """;
+                System.out.println(art);
+            }
+            if (errors == 1){
+                art = """
+                           ▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █    ▄▀     ▐                                  
+                           █  ▄▀       ▐                             
+                           █▄▀         🞉           
+                           █                          
+                           █                                             
+                           █                                              
+                           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █[E]xit  [N]ew game█  
+                           ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                   
+                       """;
+                System.out.println(art);
+            }
+            if (errors == 2){
+                art = """
+                           ▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █    ▄▀     ▐                                  
+                           █  ▄▀       ▐                             
+                           █▄▀         🞉           
+                           █           []                
+                           █                                            
+                           █                                              
+                           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █[E]xit  [N]ew game█  
+                           ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                    
+                       """;
+                System.out.println(art);
+            }
+            if (errors == 3){
+                art = """
+                           ▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █    ▄▀     ▐                                  
+                           █  ▄▀       ▐                             
+                           █▄▀         🞉           
+                           █          ⎧[]               
+                           █                                          
+                           █                                              
+                           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █[E]xit  [N]ew game█  
+                           ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
+                       """;
+                System.out.println(art);
+            }
+            if (errors == 4){
+                art = """
+                           ▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █    ▄▀     ▐                                  
+                           █  ▄▀       ▐                             
+                           █▄▀         🞉           
+                           █          ⎧[]⎫                 
+                           █                                           
+                           █                                              
+                           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █[E]xit  [N]ew game█  
+                           ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
+                       """;
+                System.out.println(art);
+            }
+            if (errors == 5){
+                art = """
+                           ▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █    ▄▀     ▐                                  
+                           █  ▄▀       ▐                             
+                           █▄▀         🞉           
+                           █          ⎧[]⎫                 
+                           █           |                             
+                           █                                              
+                           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █[E]xit  [N]ew game█  
+                           ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                              
+                       """;
+                System.out.println(art);
+            }
+            if (errors == 6){
+                art = """
+                           ▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █    ▄▀     ▐                                  
+                           █  ▄▀       ▐                             
+                           █▄▀         🞉           
+                           █          ⎧[]⎫                 
+                           █           ||                                  
+                           █                                              
+                           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                           █[E]xit  [N]ew game█  
+                           ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                               
+                       """;
+                System.out.println(art);
+                System.out.println("Вы проиграли ваше слово было: " + String.join("",randomWord) + "\n\n\n");
+                dictonary();
+            }
+
+            System.out.println("колличество ошибок = " + errors);
+
+            for (String w : riddle) {
+                System.out.print(w);
+            }
+
+            System.out.print("\nВведите букву: ");
+            String letter = in.nextLine().toLowerCase();
+
+            if (letter.equals("n") ){
+                dictonary();
+            } else if (letter.equals("e")) {
+                break;
+            }
+
+            String controlOld = String.join("", riddle);
+            
+            check(randomWord,riddle,letter);
+
+            String controlNew = String.join("", riddle);
+
+            if (controlOld.equals(controlNew.toString())) {
+                errors++;
+            }
+
+        }
+        return "end";
+    }
+}
